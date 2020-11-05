@@ -49,12 +49,12 @@ h3 {
 <h3>E-mail Sender Worker</h3>
 
 <div class="container">
-  <form>
-    <label for="fname">Assunto</label>
-    <input type="text" id="fname" name="firstname">
+  <form action="http://localhost:8080" method="POST">
+    <label for="assunto">Assunto</label>
+    <input type="text" id="assunto" name="assunto">
 
-    <label for="subject">Mensagem</label>
-    <textarea id="subject" name="subject" style="height:200px"></textarea>
+    <label for="mensagem">Mensagem</label>
+    <textarea id="mensagem" name="mensagem" style="height:200px"></textarea>
 
     <input type="submit" value="Enviar">
   </form>

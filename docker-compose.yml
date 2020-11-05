@@ -18,4 +18,13 @@ services:
       # Site
       - ./web:/usr/share/nginx/html/
     ports:
-      - 80:80    
+      - 80:80
+  app:
+    image: python:3.6
+    volumes:
+      # Aplicação
+      - ./app:/app
+    working_dir: /app
+    command: bash ./app.sh
+    ports:
+      - 8080:8080    
