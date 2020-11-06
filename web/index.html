@@ -1,63 +1,68 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body {font-family: Arial, Helvetica, sans-serif;}
-* {box-sizing: border-box;}
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
 
-input[type=text], select, textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  margin-top: 6px;
-  margin-bottom: 16px;
-  resize: vertical;
-}
+        * {
+            box-sizing: border-box;
+        }
 
-input[type=submit] {
-  background-color: #4CAF50;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
+        input[type=text], select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            resize: vertical;
+        }
 
-input[type=submit]:hover {
-  background-color: #45a049;
-}
+        input[type=submit] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
 
-.container {
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  padding: 20px;
-  margin: 0 auto;
-  width: 70vw;
-}
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
 
-h3 {
-    text-align: center;
-}
+        .container {
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+            margin: 0 auto;
+            width: 70vw;
+        }
 
-</style>
+        h3 {
+            text-align: center;
+        }
+
+    </style>
 </head>
 <body>
 
 <h3>E-mail Sender Worker</h3>
 
 <div class="container">
-  <form action="http://localhost/api" method="POST">
-    <label for="assunto">Assunto</label>
-    <input type="text" id="assunto" name="assunto">
+    <form action="http://localhost/api" method="POST">
+        <label for="assunto">Assunto</label>
+        <input id="assunto" name="assunto" type="text">
 
-    <label for="mensagem">Mensagem</label>
-    <textarea id="mensagem" name="mensagem" style="height:200px"></textarea>
+        <label for="mensagem">Mensagem</label>
+        <textarea id="mensagem" name="mensagem" style="height:200px"></textarea>
 
-    <input type="submit" value="Enviar">
-  </form>
+        <input type="submit" value="Enviar">
+    </form>
 </div>
 
 </body>

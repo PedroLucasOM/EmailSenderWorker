@@ -4,11 +4,10 @@ volumes:
 networks:
   banco:
   web:
+  fila:
 services:
   db:
     image: postgres:9.6
-    environment:
-      - POSTGRES_PASSWORD=postgres
     volumes:
       # Volume dos dados
       - dados:/var/lib/postgresql/data
@@ -17,6 +16,8 @@ services:
       - ./scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - banco
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: "trust"
   frontend:
     image: nginx:1.13
     volumes:
@@ -40,5 +41,22 @@ services:
     networks:
       - banco
       - web
+      - fila
     depends_on:
       - db
+      - queue
+  queue:
+    image: redis:3.2
+    networks:
+      - fila
+  worker:
+    build: worker
+    volumes:
+      # Worker
+      - ./worker:/worker
+    working_dir: /worker
+    command: worker.py
+    networks:
+      - fila
+    depends_on:
+      - queue
