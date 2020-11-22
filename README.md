@@ -6,7 +6,7 @@
   <img src="https://img.shields.io/badge/python-3.6.0-blue.svg" />
   <img src="https://img.shields.io/badge/redis-3.2.0-blue.svg" />
   <a href="fasf" target="_blank">
-    <img alt="documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
+    <img alt="documentation" src="https://img.shields.io/badge/documentation-yes-green.svg" />
   </a>
   <a href="https://github.com/kefranabg/readme-md-generator/graphs/commit-activity" target="_blank">
     <img alt="maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
