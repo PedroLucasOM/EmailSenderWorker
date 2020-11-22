@@ -24,79 +24,79 @@
 
 - docker
 
-# Arquitetura
+# Architecture
 
-Observe abaixo o modelo arquitetural usado na aplicação:
+Observe the architectural model used in the application below:
 
 <img src="https://github.com/PedroLucasOM/EmailSenderWorker/blob/master/images/Diagrama%20em%20branco.png" width="600" />
 
 # Usage
 
-Com o docker iniciado, execute os passos a seguir:
+With the docker started, perform the following steps:
 
-### Worker único
+### Single worker
 
-Para rodar a aplicação com um único worker, execute o seguinte comando:
+To run the application with a single worker, run the following command:
 
 ```sh
 docker-compose up -d
 ```
 
-Inicialmente, ao usar o comando acima, a aplicação irá iniciar com apenas 1 processador de mensagens de e-mail (worker), enfileirando as requisições e trabalhando de forma síncrona, ou seja apenas uma requisição de mensagem é processada por vez.
+Initially, when using the command above, the application will start with just 1 email message processor (worker), queuing requests and working synchronously, that is, only one message request is processed at a time.
 
-Veja o exemplo a seguir:
+See the following example:
 
-![worker1](https://github.com/PedroLucasOM/EmailSenderWorker/blob/master/images/worker1.gif)
+<img src="https://github.com/PedroLucasOM/EmailSenderWorker/blob/master/images/worker1.gif" width="600" />
 
-### Worker múltiplo
+### Multiple worker
 
-Para rodar a aplicação com múltiplos workers, execute o seguinte comando:
+To run the application with multiple workers, run the following command:
 
 ```sh
 docker-compose up -d --scale worker=3
 ```
 
-Dessa forma, ao usar o comando acima, a aplicação irá iniciar com 3 processadores de mensagens de e-mail (workers), alocando as mensagens entre os workers disponíveis e enfileirando em cada worker quando todos estiverem ocupados. Dessa forma, a aplicação trabalhará de forma assíncrona entre 3 workers.
+That way, when using the command above, the application will start with 3 email message processors (workers), allocating messages among the available workers and queuing in each worker when everyone is busy. Thus, the application will work asynchronously between 3 workers.
 
-Veja o exemplo a seguir:
+See the following example:
 
-![worker2](https://github.com/PedroLucasOM/EmailSenderWorker/blob/master/images/worker2.gif)
+<img src="https://github.com/PedroLucasOM/EmailSenderWorker/blob/master/images/worker2.gif" width="600" />
 
-### Interface para envio de requisição
+### Interface for sending requests
 
-Para enviar as mensagens, após iniciar a aplicação, acesse <a href="http://localhost:80">http://localhost:80</a>
+To send the messages, after starting the application, access <a href="http://localhost:80">http://localhost:80</a>
 
-Você verá esta tela:
+You will see this screen:
 
 <img src="https://github.com/PedroLucasOM/EmailSenderWorker/blob/master/images/front.png" width="600" />
 
-### Comparando
+### Comparing
 
-#### Worker único
+#### Single worker
 
-Na primeira situação, cada mensagem enviada precisa esperar a mensagem anterior ser processada, já que existem apenas um worker.
+In the first situation, each message sent needs to wait for the previous message to be processed, since there is only one worker.
 
-Observe:
+Watch:
 
 <img src="https://github.com/PedroLucasOM/EmailSenderWorker/blob/master/images/worker-1.png" width="600" />
 
-A mensagem 1 foi processada inicialmente.
-A mensagem 2 precisou esperar a mensagem 1 terminar o seu processamento.
-A mensagem 3 precisou esperar a mensagem 2 terminar o seu processamento.
+Message 1 was processed initially.
+Message 2 had to wait for message 1 to finish processing.
+Message 3 had to wait for message 2 to finish processing.
 
-#### Worker múltiplo
+#### Multiple worker
 
-Na segunda situação, cada mensagem enviada verificou qual worker estava disponível para processá-la, ocupando assim os 3 workers disponíveis e tornando o processamento das 3 mensagens independentes.
+In the second situation, each message sent checked which worker was available to process it, thus occupying the 3 available workers and making the processing of the 3 messages independent.
 
-Observe:
+Watch:
 
-<img src="https://github.com/PedroLucasOM/EmailSenderWorker/blob/master/images/worker-2.png" width="600" />
+<img src="https://github.com/PedroLucasOM/EmailSenderWorker/blob/master/images/worker-3.png" width="600" />
 
-A mensagem 1 foi processada inicialmente no worker 1.
-A mensagem 2 foi processada no worker 3 (buscou um dos outros workers disponíveis)
-A mensagem 3 foi processada no worker 2 (buscou o último worker disponível)
+Message 1 was initially processed at worker 1.
+Message 2 was processed on worker 3 (fetched one of the other available workers)
+Message 3 was processed on worker 2 (fetched the last available worker)
 
-Caso uma 4ª mensagem fosse enviada para ser processada, ela seria enfieleirada em um dos workers, já que todos estão ocupados.
+If a 4th message were sent to be processed, it would be queued in one of the workers, since everyone is busy.
 
 # Author
 
