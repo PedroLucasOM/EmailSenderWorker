@@ -12,5 +12,5 @@ if __name__ == '__main__':
         mensagem = json.loads(r.blpop('sender')[1])
         # Simulando envio de e-mail...
         print('Mandando a mensagem:', mensagem['assunto'])
-        sleep(randint(15, 45))
+        sleep(randint(5, 15))
         print('Mensagem', mensagem['assunto'], 'enviada')
