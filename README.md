@@ -16,7 +16,7 @@
   </a>
 </p>
 
-> 💻 Aplicação escalável para simulação de envio de e-mails com workers do Docker 🐳 e Pyhton com o micro-framework Bottle 🐍
+> :computer: Scalable application for simulating sending emails with Docker workers :whale: and Pyhton with the Bottle micro-framework :snake:
 
 # 🏠 [Homepage](https://github.com/PedroLucasOM/EmailSenderWorker)
 
